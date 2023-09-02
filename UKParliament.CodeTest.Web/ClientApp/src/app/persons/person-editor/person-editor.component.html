@@ -1,0 +1,17 @@
+<!-- src/app/person-editor/person-editor.component.html -->
+
+<div *ngIf="selectedPerson">
+    <h2>Edit Person</h2>
+    <form (submit)="savePerson()">
+      <label for="firstName">First Name:</label>
+      <input id="firstName" [(ngModel)]="selectedPerson.firstName" name="firstName" required>
+      <br>
+      <label for="lastName">Last Name:</label>
+      <input id="lastName" [(ngModel)]="selectedPerson.lastName" name="lastName" required>
+      <br>
+      <label for="age">Age:</label>
+      <input id="age" [(ngModel)]="selectedPerson.age" name="age" required>
+      <br>
+      <button type="submit">Save</button>
+    </form>
+  </div>
