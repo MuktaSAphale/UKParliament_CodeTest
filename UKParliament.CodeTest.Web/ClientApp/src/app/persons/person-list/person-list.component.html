@@ -1,0 +1,5 @@
+<!-- src/app/person-list/person-list.component.html -->
+
+<div *ngFor="let person of people" (click)="selectPerson(person)">
+    {{ person.firstName }} {{ person.lastName }}
+  </div>
