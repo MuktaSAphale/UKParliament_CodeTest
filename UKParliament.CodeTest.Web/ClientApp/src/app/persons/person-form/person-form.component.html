@@ -1,0 +1,17 @@
+<!-- src/app/person-form/person-form.component.html -->
+
+<div>
+    <h2>Add Person</h2>
+    <form (submit)="addPerson()">
+      <label for="newFirstName">First Name:</label>
+      <input id="newFirstName" [(ngModel)]="newPerson.firstName" name="newFirstName" required>
+      <br>
+      <label for="newLastName">Last Name:</label>
+      <input id="newLastName" [(ngModel)]="newPerson.lastName" name="newLastName" required>
+      <br>
+      <label for="newAge">Age:</label>
+      <input id="newAge" [(ngModel)]="newPerson.age" name="newAge" required>
+      <br>
+      <button type="submit">Add</button>
+    </form>
+  </div>
