@@ -7,12 +7,20 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
+import { PersonListComponent } from './persons/person-list/person-list.component';
+import { PersonEditorComponent } from './persons/person-editor/person-editor.component';
+import { PersonFormComponent } from './persons/person-form/person-form.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PersonListComponent,
+    PersonEditorComponent,
+    PersonFormComponent,
   ],
-  imports: [
+  imports: [    
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
