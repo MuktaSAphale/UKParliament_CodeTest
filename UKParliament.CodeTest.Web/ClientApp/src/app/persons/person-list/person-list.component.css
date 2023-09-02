@@ -1,0 +1,23 @@
+div {
+   float: left;
+}
+
+.people-list {
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-width: 300px;
+  }
+  
+  .person-link {
+    display: block;
+    text-decoration: none;
+    color: #333; /* Default link color */
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: color 0.3s; /* Smooth color transition on hover */
+  }
+  
+  .person-link:hover {
+    color: #007bff; /* Link color on hover */
+  }
