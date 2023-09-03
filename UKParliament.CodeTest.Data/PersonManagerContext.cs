@@ -9,7 +9,6 @@ namespace UKParliament.CodeTest.Data
     {
         public PersonManagerContext(DbContextOptions<PersonManagerContext> options) : base(options)
         {
-            People = Set<Person>();      
         }
 
         public DbSet<Person> People { get; set; }
