@@ -14,7 +14,10 @@ namespace UKParliament.CodeTest.Web
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<PersonManagerContext>(op => op.UseInMemoryDatabase("PersonManager"));
+            builder.Services.AddDbContext<PersonManagerContext>(options =>
+            {
+                options.UseInMemoryDatabase("PersonManager");
+            }, ServiceLifetime.Scoped);
 
             builder.Services.AddScoped<IPersonService, PersonService>();
 
@@ -36,7 +39,7 @@ namespace UKParliament.CodeTest.Web
 
             app.MapFallbackToFile("index.html");
 
-            app.Run();
+            app.Run();           
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using UKParliament.CodeTest.Data;
 using UKParliament.CodeTest.Services;
-using UKParliament.CodeTest.Web.ViewModels;
 
 namespace UKParliament.CodeTest.Web.Controllers
 {
@@ -9,12 +9,11 @@ namespace UKParliament.CodeTest.Web.Controllers
     [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
-        private readonly ILogger<PersonController> _logger;
-        private readonly PersonService _personService;
+        private readonly IPersonService _personService;
 
-        public PersonController(PersonService personService)
+        public PersonController(IPersonService personService, PersonManagerContext context)
         {
-            _personService = personService;
+            _personService = personService;    
         }
 
         [HttpGet]
