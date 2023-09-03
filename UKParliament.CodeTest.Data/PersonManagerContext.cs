@@ -9,17 +9,21 @@ namespace UKParliament.CodeTest.Data
     {
         public PersonManagerContext(DbContextOptions<PersonManagerContext> options) : base(options)
         {
-            
+            People = Set<Person>();
+            SeedInitialData();
         }
 
-        public DbSet<Person>? People { get; set; }
+        public DbSet<Person> People { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);            
+        }
 
+        private void SeedInitialData()
+        {
             // Seed initial data
-            modelBuilder.Entity<Person>().HasData(
+            People.AddRange(
                 new Person { Id = 1, FirstName = "John", LastName = "Doe", Age = 30 },
                 new Person { Id = 2, FirstName = "Jane", LastName = "Smith", Age = 25 },
                 new Person { Id = 3, FirstName = "Foo", LastName = "Bar", Age = 40 }
