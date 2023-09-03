@@ -6,7 +6,7 @@ namespace UKParliament.CodeTest.Services
     {
         public List<Person> GetAllPeople();
 
-        public Person GetPersonById(int id);
+        public Person? GetPersonById(int id);
 
         public void AddPerson(Person person);
 
