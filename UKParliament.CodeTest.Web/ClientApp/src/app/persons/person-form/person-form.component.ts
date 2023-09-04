@@ -4,6 +4,7 @@ import { Component, EventEmitter, OnInit, Input, Output, SimpleChanges } from '@
 import { Person } from '../person.model';
 import { PersonService } from '../person.service';
 import { PersonListComponent } from '../person-list/person-list.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-person-form',
@@ -15,11 +16,11 @@ export class PersonFormComponent implements OnInit {
   @Output() personDeleted = new EventEmitter<any>(); 
   @Input() selectedPerson: Person | null = null;
   
-  newPerson: { id?: number, firstName?: string, lastName?: string, age?: number } = {
+  newPerson: { id?: number, firstName?: string, lastName?: string, dateOfBirth?: Date } = {
     id: 0,
     firstName: '',
     lastName: '',
-    age: 0,
+    dateOfBirth: undefined,
   };
 
   constructor(private personService: PersonService) {}
@@ -30,6 +31,16 @@ export class PersonFormComponent implements OnInit {
     }
   }
 
+  resetPerson()
+  {
+    this.newPerson = {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      dateOfBirth: undefined,
+    };
+  }
+
   addOrEditPerson() {
     if(this.newPerson.id == 0)
     {
@@ -38,7 +49,7 @@ export class PersonFormComponent implements OnInit {
     {
       this.editperson();
     }
-  }
+  }  
 
   addPerson()
   {
@@ -48,13 +59,7 @@ export class PersonFormComponent implements OnInit {
         console.log('Person added successfully');
 
         this.personAddedOrEdited.emit();
-
-        this.newPerson = {
-          id: 0,
-          firstName: '',
-          lastName: '',
-          age: 0,
-        };
+        this.resetPerson();
 
       },
       (error) => {
@@ -70,16 +75,11 @@ export class PersonFormComponent implements OnInit {
     this.personService.editPerson(this.newPerson).subscribe(
       () => {
         // Handle success or show a confirmation message.
-        console.log('Person added successfully');
+        console.log('Person edited successfully');
 
         this.personAddedOrEdited.emit();
 
-        this.newPerson = {
-          id: 0,
-          firstName: '',
-          lastName: '',
-          age: 0,
-        };
+        this.resetPerson();
 
       },
       (error) => {
@@ -99,31 +99,16 @@ export class PersonFormComponent implements OnInit {
 
         this.personDeleted.emit();
 
-        this.newPerson = {
-          id: 0,
-          firstName: '',
-          lastName: '',
-          age: 0,
-        };
+        this.resetPerson();
 
       },
       (error) => {
         // Handle errors.
-        console.error('Error adding person:', error);
+        console.error('Error deleting person:', error);
       }  
 
     );
-  }
-
-  clearForm()
-  {
-    this.newPerson = {
-      id: 0,
-      firstName: '',
-      lastName: '',
-      age: 0,
-    };
-  }
+  } 
 
   ngOnInit() {}
 }

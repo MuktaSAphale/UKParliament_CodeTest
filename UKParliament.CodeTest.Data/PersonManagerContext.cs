@@ -16,12 +16,6 @@ namespace UKParliament.CodeTest.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Seed initial data when the database is created
-            modelBuilder.Entity<Person>().HasData(
-                new Person { Id = 1, FirstName = "John", LastName = "Doe", Age = 30 },
-                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", Age = 25 }
-            );
         }
     }
 }

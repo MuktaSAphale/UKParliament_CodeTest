@@ -16,8 +16,8 @@
       <input id="newLastName" [(ngModel)]="newPerson.lastName" name="newLastName" required class="form-control">
     </div>
     <div class="form-group">
-      <label for="newAge">Age:</label>
-      <input id="newAge" [(ngModel)]="newPerson.age" name="newAge" required class="form-control">
+      <label for="newDateOfBirth">Date of Birth:</label>
+      <input type="date" id="newDateOfBirth" [(ngModel)]="newPerson.dateOfBirth" name="newDateOfBirth" required class="form-control">
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-success">Add / Edit</button>
@@ -26,7 +26,7 @@
       <button type="button" class="btn btn-success" (click)="deletePerson()" *ngIf="newPerson.id">Delete Person</button>    
     </div>
     <div class="form-group">
-      <button type="button" class="btn btn-success" (click)="clearForm()">Clear Form</button>    
+      <button type="button" class="btn btn-success" (click)="resetPerson()">Clear Form</button>    
     </div>
   </form>  
 </div>

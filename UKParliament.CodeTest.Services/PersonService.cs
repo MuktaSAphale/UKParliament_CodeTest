@@ -18,8 +18,8 @@ namespace UKParliament.CodeTest.Services
         private void SeedData() {
            
             _context.People.AddRange(
-                new Person { Id = 1, FirstName = "John", LastName = "Doe", Age = 30 },
-                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", Age = 25 }
+                new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = DateTime.Parse("01/01/1990") },
+                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", DateOfBirth = DateTime.Parse("06/06/1985") }
             );
             _context.SaveChanges();
             
@@ -48,7 +48,7 @@ namespace UKParliament.CodeTest.Services
             {
                 existingPerson.FirstName = updatedPerson.FirstName;
                 existingPerson.LastName = updatedPerson.LastName;
-                existingPerson.Age = updatedPerson.Age;
+                existingPerson.DateOfBirth = updatedPerson.DateOfBirth;
                 _context.SaveChanges();
             }
         }
