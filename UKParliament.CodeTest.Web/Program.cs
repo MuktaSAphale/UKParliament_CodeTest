@@ -21,6 +21,8 @@ namespace UKParliament.CodeTest.Web
 
             builder.Services.AddScoped<IPersonService, PersonService>();
 
+            builder.Services.AddCors();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -38,6 +40,8 @@ namespace UKParliament.CodeTest.Web
                 pattern: "{controller}/{action=Index}/{id?}");
 
             app.MapFallbackToFile("index.html");
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.Run();           
         }

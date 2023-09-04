@@ -1,4 +1,5 @@
-﻿using UKParliament.CodeTest.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using UKParliament.CodeTest.Data;
 
 namespace UKParliament.CodeTest.Services
 {
@@ -9,6 +10,15 @@ namespace UKParliament.CodeTest.Services
         public PersonService(PersonManagerContext context)
         {
             _context = context;
+            SeedData();
+        }
+        private void SeedData()
+        {
+            _context.People.AddRange(
+               new Person { Id = 1, FirstName = "John", LastName = "Doe", Age = 30 },
+               new Person { Id = 2, FirstName = "Jane", LastName = "Smith", Age = 25 }
+            );
+            _context.SaveChanges();
         }
 
         public List<Person> GetAllPeople()
