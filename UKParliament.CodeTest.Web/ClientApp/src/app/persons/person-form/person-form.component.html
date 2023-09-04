@@ -2,7 +2,7 @@
 
 <div class="add-person-form">
   <h2>Add Person</h2>
-  <form (submit)="addPerson()" class="person-form">
+  <form (ngSubmit)="addPerson()" class="person-form">
     <div class="form-group">
       <label for="newFirstName">First Name:</label>
       <input id="newFirstName" [(ngModel)]="newPerson.firstName" name="newFirstName" required class="form-control">

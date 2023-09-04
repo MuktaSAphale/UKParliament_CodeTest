@@ -10,15 +10,19 @@ namespace UKParliament.CodeTest.Services
         public PersonService(PersonManagerContext context)
         {
             _context = context;
-            SeedData();
+            if (_context.People.Count() == 0)
+            {
+                SeedData();
+            }
         }
-        private void SeedData()
-        {
+        private void SeedData() {
+           
             _context.People.AddRange(
-               new Person { Id = 1, FirstName = "John", LastName = "Doe", Age = 30 },
-               new Person { Id = 2, FirstName = "Jane", LastName = "Smith", Age = 25 }
+                new Person { Id = 1, FirstName = "John", LastName = "Doe", Age = 30 },
+                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", Age = 25 }
             );
             _context.SaveChanges();
+            
         }
 
         public List<Person> GetAllPeople()

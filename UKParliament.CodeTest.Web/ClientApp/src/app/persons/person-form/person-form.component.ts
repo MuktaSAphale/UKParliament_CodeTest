@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../person.model';
+import { PersonService } from '../person.service';
 
 @Component({
   selector: 'app-person-form',
@@ -9,11 +10,21 @@ import { Person } from '../person.model';
   styleUrls: ['./person-form.component.css'],
 })
 export class PersonFormComponent implements OnInit {
-  newPerson: Person = { id: 0, firstName: '', lastName: '', age: 0 };
+  newPerson: any = {};
+
+  constructor(private personService: PersonService) {}
 
   addPerson() {
-    // Implement add logic here (e.g., add the person to the list).
-    console.log('Person added:', this.newPerson);
+    this.personService.addPerson(this.newPerson).subscribe(
+      () => {
+        // Handle success or show a confirmation message.
+        console.log('Person added successfully');
+      },
+      (error) => {
+        // Handle errors.
+        console.error('Error adding person:', error);
+      }
+    );
   }
 
   ngOnInit() {}
