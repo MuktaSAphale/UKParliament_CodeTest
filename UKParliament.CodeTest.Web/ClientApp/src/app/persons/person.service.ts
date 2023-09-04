@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class PersonService {
-  private apiUrl = 'http://your-csharp-api-url/api/person'; // Replace with your API URL
+  private apiUrl = 'http://api/person'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 
