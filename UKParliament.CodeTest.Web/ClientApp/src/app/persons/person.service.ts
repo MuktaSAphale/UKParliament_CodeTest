@@ -7,11 +7,19 @@ import { Observable } from 'rxjs';
 })
 
 export class PersonService {
-  private apiUrl = 'http://api/person'; // Replace with your API URL
+  private apiUrl = '/api/person/'; 
 
   constructor(private http: HttpClient) {}
 
   addPerson(person: any): Observable<any> {
     return this.http.post(this.apiUrl, person);
+  }
+
+  editPerson(person: any): Observable<any> {
+    return this.http.put(this.apiUrl +  person.id, person);
+  }
+
+  deletePerson(person: any): Observable<any> {
+    return this.http.delete(this.apiUrl +  person.id, person);
   }
 }

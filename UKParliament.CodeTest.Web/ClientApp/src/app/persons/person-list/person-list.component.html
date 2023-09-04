@@ -5,3 +5,6 @@
     {{ person.firstName }} {{ person.lastName }}
   </a>
 </div>
+
+<app-person-form [selectedPerson]="selectedPerson" (personAddedOrEdited)="personAddedOrEdited()"></app-person-form>
+

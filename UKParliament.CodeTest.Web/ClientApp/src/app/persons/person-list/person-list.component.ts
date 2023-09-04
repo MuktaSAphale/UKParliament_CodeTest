@@ -17,7 +17,7 @@ export class PersonListComponent implements OnInit {
   selectedPerson: Person | null = null;
 
   selectPerson(person: Person) {
-    this.selectedPerson = { ...person };
+    this.selectedPerson = { ...person };    
   }
 
   ngOnInit() {
@@ -30,4 +30,13 @@ export class PersonListComponent implements OnInit {
         this.people = response;
       });
   }
-}
+
+  personAddedOrEdited() {    
+    this.getPersons();
+  }
+
+  personDeleted() {
+    this.getPersons();
+  }
+  }
+  
