@@ -12,7 +12,7 @@ import { PersonListComponent } from '../person-list/person-list.component';
 })
 export class PersonFormComponent implements OnInit {
   @Output() personAddedOrEdited = new EventEmitter<any>();
-  @Output() personDeleted = new EventEmitter<any>();
+  @Output() personDeleted = new EventEmitter<any>(); 
   @Input() selectedPerson: Person | null = null;
   
   newPerson: { id?: number, firstName?: string, lastName?: string, age?: number } = {
@@ -113,6 +113,16 @@ export class PersonFormComponent implements OnInit {
       }  
 
     );
+  }
+
+  clearForm()
+  {
+    this.newPerson = {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      age: 0,
+    };
   }
 
   ngOnInit() {}
