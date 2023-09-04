@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { PersonListComponent } from './persons/person-list/person-list.component';
-import { PersonEditorComponent } from './persons/person-editor/person-editor.component';
 import { PersonFormComponent } from './persons/person-form/person-form.component';
 
 
@@ -17,7 +16,6 @@ import { PersonFormComponent } from './persons/person-form/person-form.component
     AppComponent,
     HomeComponent,
     PersonListComponent,
-    PersonEditorComponent,
     PersonFormComponent,
   ],
   imports: [    
