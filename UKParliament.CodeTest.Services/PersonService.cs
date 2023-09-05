@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 using UKParliament.CodeTest.Data;
 
 namespace UKParliament.CodeTest.Services
@@ -10,7 +11,11 @@ namespace UKParliament.CodeTest.Services
         public PersonService(PersonManagerContext context)
         {
             _context = context;
-            if (_context.People.Count() == 0)
+            if((context == null)|| (context.People==null))
+            {
+                throw new NullReferenceException();
+            }
+            else if (_context.People.Count() == 0)
             {
                 SeedData();
             }
@@ -27,39 +32,62 @@ namespace UKParliament.CodeTest.Services
 
         public List<Person> GetAllPeople()
         {
-            return _context.People.ToList();
+            if (_context.People != null)
+            {
+                return _context.People.ToList();
+            }
+
+            return new List<Person>();
         }
 
-        public Person GetPersonById(int id)
+        public Person? GetPersonById(int id)
         {
-            return _context.People.FirstOrDefault(p => p.Id == id);
+            if (_context.People != null)
+            {
+                return _context.People.FirstOrDefault(p => p.Id == id);
+            }
+
+            return null;
         }
 
         public void AddPerson(Person person)
         {
-            _context.People.Add(person);
-            _context.SaveChanges();
+            if (_context.People != null)
+            {
+                _context.People.Add(person);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
 
         public void UpdatePerson(int id, Person updatedPerson)
         {
-            var existingPerson = _context.People.FirstOrDefault(p => p.Id == id);
-            if (existingPerson != null)
+            if (_context.People != null)
             {
-                existingPerson.FirstName = updatedPerson.FirstName;
-                existingPerson.LastName = updatedPerson.LastName;
-                existingPerson.DateOfBirth = updatedPerson.DateOfBirth;
-                _context.SaveChanges();
+                var existingPerson = _context.People.FirstOrDefault(p => p.Id == id);
+                if (existingPerson != null)
+                {
+                    existingPerson.FirstName = updatedPerson.FirstName;
+                    existingPerson.LastName = updatedPerson.LastName;
+                    existingPerson.DateOfBirth = updatedPerson.DateOfBirth;
+                    _context.SaveChanges();
+                }
             }
         }
 
         public void DeletePerson(int id)
         {
-            var personToRemove = _context.People.FirstOrDefault(p => p.Id == id);
-            if (personToRemove != null)
+            if (_context.People != null)
             {
-                _context.People.Remove(personToRemove);
-                _context.SaveChanges();
+                var personToRemove = _context.People.FirstOrDefault(p => p.Id == id);
+                if (personToRemove != null)
+                {
+                    _context.People.Remove(personToRemove);
+                    _context.SaveChanges();
+                }
             }
         }
     }
