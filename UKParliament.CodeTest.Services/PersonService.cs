@@ -18,8 +18,8 @@ namespace UKParliament.CodeTest.Services
         private void SeedData() {
            
             _context.People.AddRange(
-                new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = DateTime.Parse("01/01/1990") },
-                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", DateOfBirth = DateTime.Parse("06/06/1985") }
+                new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = "1990-01-01" },
+                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", DateOfBirth = "1985-06-06" }
             );
             _context.SaveChanges();
             

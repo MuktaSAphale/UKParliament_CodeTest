@@ -16,11 +16,11 @@ export class PersonFormComponent implements OnInit {
   @Output() personDeleted = new EventEmitter<any>(); 
   @Input() selectedPerson: Person | null = null;
   
-  newPerson: { id?: number, firstName?: string, lastName?: string, dateOfBirth?: Date } = {
+  newPerson: { id?: number, firstName?: string, lastName?: string, dateOfBirth?: string } = {
     id: 0,
     firstName: '',
     lastName: '',
-    dateOfBirth: undefined,
+    dateOfBirth: '',
   };
 
   constructor(private personService: PersonService) {}
@@ -37,7 +37,7 @@ export class PersonFormComponent implements OnInit {
       id: 0,
       firstName: '',
       lastName: '',
-      dateOfBirth: undefined,
+      dateOfBirth: '',
     };
   }
 
