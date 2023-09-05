@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
-using UKParliament.CodeTest.Data;
+﻿using UKParliament.CodeTest.Data;
 
 namespace UKParliament.CodeTest.Services
 {
