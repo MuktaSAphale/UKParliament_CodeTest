@@ -31,7 +31,7 @@ describe('PersonFormComponent', () => {
       id: 0,
       firstName: 'John',
       lastName: 'Doe',
-      dateOfBirth: '1990-01-01',
+      dateOfBirth: new Date('1990-01-01'),
     };
 
     // Configure the personService spy to return a successful response
@@ -49,7 +49,7 @@ describe('PersonFormComponent', () => {
       id: 2,
       firstName: 'Jane',
       lastName: 'Smith',
-      dateOfBirth: '1995-02-15',
+      dateOfBirth: new Date('1995-02-15'),
     };
 
     // Configure the personService spy to return a successful response
@@ -67,7 +67,7 @@ describe('PersonFormComponent', () => {
       id: 3,
       firstName: 'Alice',
       lastName: 'Smith',
-      dateOfBirth: '1985-03-20',
+      dateOfBirth: new Date('1985-03-20'),
     };
 
     // Configure the personService spy to return a successful response
