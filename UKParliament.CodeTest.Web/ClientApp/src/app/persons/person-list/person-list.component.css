@@ -1,23 +1,23 @@
-div {
-   float: left;
-}
-
 .people-list {
     border: 1px solid #ccc;
     padding: 10px;
-    max-width: 300px;
+    width: 25%;
+    min-height: 400px;
+    float:left;
   }
   
   .person-link {
     display: block;
-    text-decoration: none;
-    color: #333; /* Default link color */
+    color: #333; 
     padding: 5px;
     border-bottom: 1px solid #ddd;
-    cursor: pointer;
-    transition: color 0.3s; /* Smooth color transition on hover */
+    cursor: pointer;    
   }
   
   .person-link:hover {
-    color: #007bff; /* Link color on hover */
+    color: #007bff; 
+  }
+ 
+  .person-editor {
+    padding: 10px;
   }

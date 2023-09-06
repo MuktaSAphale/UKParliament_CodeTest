@@ -1,0 +1,26 @@
+.add-person-form{
+    float: left;    
+    padding-left: 50px;
+    width: 75%;
+}
+
+.form-group {
+    padding-bottom: 10px;
+}
+
+.add-button{
+   padding-top: 10px;
+   padding-right: 10px; 
+   float: left;
+}
+
+.delete-button{
+    padding-top: 10px;
+    padding-right: 10px; 
+    float: left;
+}
+
+.clear-button {
+    padding-top: 10px;
+    padding-right: 10px; 
+}

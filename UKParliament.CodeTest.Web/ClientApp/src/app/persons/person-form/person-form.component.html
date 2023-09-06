@@ -1,7 +1,7 @@
 <!-- src/app/person-form/person-form.component.html -->
 
 <div class="add-person-form">
-  <h2>Add/Edit Person</h2>
+  <h3>Add / Edit Person</h3>
   <form (ngSubmit)="addOrEditPerson()" class="person-form">
     <div class="form-group">
       <label for="newId">Id:</label>
@@ -19,14 +19,19 @@
       <label for="newDateOfBirth">Date of Birth:</label>
       <input type="date" id="newDateOfBirth" [(ngModel)]="newPerson.dateOfBirth" [value]="newPerson.dateOfBirth" name="newDateOfBirth" required class="form-control">      
     </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-success">Add / Edit</button>
+
+    <div class="add-delete-button-group">
+      <div class="add-button">
+        <button type="submit" class="btn btn-success">Add / Edit</button>
+      </div>
+      <div class="delete-button">
+        <button type="button" class="btn btn-success" (click)="deletePerson()" *ngIf="newPerson.id">Delete Person</button>    
+      </div>
     </div>
-    <div class="form-group">
-      <button type="button" class="btn btn-success" (click)="deletePerson()" *ngIf="newPerson.id">Delete Person</button>    
-    </div>
-    <div class="form-group">
+    
+    <div class="clear-button">
       <button type="button" class="btn btn-success" (click)="resetPerson()">Clear Form</button>    
     </div>
+  
   </form>  
 </div>
