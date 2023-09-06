@@ -18,40 +18,75 @@ namespace UKParliament.CodeTest.Web.Controllers
         [HttpGet]
         public ActionResult<List<Person>> GetAllPeople()
         {
-            var people = _personService.GetAllPeople();
-            return Ok(people);
+            try
+            {
+                var people = _personService.GetAllPeople();
+                return Ok(people);
+            }
+            catch (Exception ex) 
+            {                
+                return BadRequest(ex.Message);
+            }   
         }
 
         [HttpGet("{id}")]
         public ActionResult<Person> GetPersonById(int id)
         {
-            var person = _personService.GetPersonById(id);
-            if (person == null)
+            try
             {
-                return NotFound();
+                var person = _personService.GetPersonById(id);
+                if (person == null)
+                {
+                    return NotFound();
+                }
+                return Ok(person);
             }
-            return Ok(person);
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
         public ActionResult<Person> AddPerson([FromBody] Person person)
         {
-            _personService.AddPerson(person);
-            return CreatedAtAction(nameof(GetPersonById), new { id = person.Id }, person);
+            try { 
+                _personService.AddPerson(person);
+                return CreatedAtAction(nameof(GetPersonById), new { id = person.Id }, person);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdatePerson(int id, [FromBody] Person updatedPerson)
         {
-            _personService.UpdatePerson(id, updatedPerson);
-            return NoContent();
-        }
+            try
+            {
+                _personService.UpdatePerson(id, updatedPerson);
+                return NoContent();
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+}
 
         [HttpDelete("{id}")]
         public IActionResult DeletePerson(int id)
         {
-            _personService.DeletePerson(id);
-            return NoContent();
+            try
+            {
+                _personService.DeletePerson(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
     }
 }
