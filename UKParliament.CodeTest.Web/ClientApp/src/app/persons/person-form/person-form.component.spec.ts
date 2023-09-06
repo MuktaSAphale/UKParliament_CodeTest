@@ -46,9 +46,9 @@ describe('PersonFormComponent', () => {
 
   it('should edit an existing person', () => {
     const editedPersonData = {
-      id: 1,
+      id: 2,
       firstName: 'Jane',
-      lastName: 'Doe',
+      lastName: 'Smith',
       dateOfBirth: '1995-02-15',
     };
 
@@ -64,7 +64,7 @@ describe('PersonFormComponent', () => {
 
   it('should delete a person', () => {
     const personToDelete = {
-      id: 2,
+      id: 3,
       firstName: 'Alice',
       lastName: 'Smith',
       dateOfBirth: '1985-03-20',
