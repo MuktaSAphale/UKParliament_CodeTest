@@ -23,7 +23,7 @@ namespace UKParliament.CodeTest.Web.Controllers
             {
                 var peopleDto = _personService.GetAllPeople();
 
-                // Map PersonDto to PersonViewModel in the web project
+                // Map PersonDto to PersonViewModel
                 var peopleViewModel = peopleDto.Select(personDto => new PersonViewModel
                 {
                     Id = personDto.Id,
@@ -79,7 +79,7 @@ namespace UKParliament.CodeTest.Web.Controllers
                     return BadRequest();
                 }
 
-                // Map PersonViewModel to PersonDto
+                // Map PersonViewModel to PersonDto 
                 var personDto = new PersonDto
                 {
                     FirstName = personViewModel.FirstName,
