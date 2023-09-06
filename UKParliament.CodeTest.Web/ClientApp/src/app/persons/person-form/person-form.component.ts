@@ -15,21 +15,20 @@ export class PersonFormComponent implements OnInit {
   @Output() personAddedOrEdited = new EventEmitter<any>();
   @Output() personDeleted = new EventEmitter<any>(); 
   @Input() selectedPerson: Person | null = null;
+  newPerson: Person = new Person();
   
-  newPerson: { id?: number, firstName?: string, lastName?: string, dateOfBirth?: string } = {
-    id: 0,
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-  };
-
   constructor(private personService: PersonService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selectedPerson) {
-      this.newPerson = { ...this.selectedPerson };
+      if (this.selectedPerson) {
+        this.newPerson = { ...this.selectedPerson }
+      } else
+      {
+        this.newPerson = new Person();
+      }
     }
-  }
+  }  
 
   resetPerson()
   {
@@ -37,7 +36,7 @@ export class PersonFormComponent implements OnInit {
       id: 0,
       firstName: '',
       lastName: '',
-      dateOfBirth: '',
+      dateOfBirth: undefined,
     };
   }
 

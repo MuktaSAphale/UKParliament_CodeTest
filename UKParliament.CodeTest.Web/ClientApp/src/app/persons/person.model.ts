@@ -1,6 +1,6 @@
-export interface Person {
+export class Person {
     id?: number;
     firstName?: string;
     lastName?: string;
-    dateOfBirth?: string;
+    dateOfBirth?: Date;
   }
