@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 
 import { PersonListComponent } from './persons/person-list/person-list.component';
 import { PersonFormComponent } from './persons/person-form/person-form.component';
@@ -14,7 +13,6 @@ import { PersonFormComponent } from './persons/person-form/person-form.component
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     PersonListComponent,
     PersonFormComponent,
   ],
@@ -23,7 +21,7 @@ import { PersonFormComponent } from './persons/person-form/person-form.component
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' }
+      { path: '', component: AppComponent, pathMatch: 'full' }
     ])
   ],
   providers: [],
