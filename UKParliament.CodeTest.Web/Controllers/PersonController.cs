@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UKParliament.CodeTest.Data;
 using UKParliament.CodeTest.Services;
+using UKParliament.CodeTest.Web.ViewModels;
 
 namespace UKParliament.CodeTest.Web.Controllers
 {
@@ -20,8 +21,18 @@ namespace UKParliament.CodeTest.Web.Controllers
         {
             try
             {
-                var people = _personService.GetAllPeople();
-                return Ok(people);
+                var peopleDto = _personService.GetAllPeople();
+
+                // Map PersonDto to PersonViewModel in the web project
+                var peopleViewModel = peopleDto.Select(personDto => new PersonViewModel
+                {
+                    Id = personDto.Id,
+                    FirstName = personDto.FirstName,
+                    LastName = personDto.LastName,
+                    DateOfBirth = personDto.DateOfBirth,
+                }).ToList();
+
+                return Ok(peopleViewModel);
             }
             catch (Exception ex) 
             {                
@@ -34,12 +45,23 @@ namespace UKParliament.CodeTest.Web.Controllers
         {
             try
             {
-                var person = _personService.GetPersonById(id);
-                if (person == null)
+                var personDto = _personService.GetPersonById(id);
+
+                if (personDto == null)
                 {
                     return NotFound();
                 }
-                return Ok(person);
+
+                // Map PersonDto to PersonViewModel in the web project
+                var personViewModel = new PersonViewModel
+                {
+                    Id = personDto.Id,
+                    FirstName = personDto.FirstName,
+                    LastName = personDto.LastName,
+                    DateOfBirth = personDto.DateOfBirth,
+                };
+
+                return Ok(personViewModel);
             }
             catch (Exception ex) 
             {
@@ -48,11 +70,25 @@ namespace UKParliament.CodeTest.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Person> AddPerson([FromBody] Person person)
+        public ActionResult<Person> AddPerson([FromBody] PersonViewModel personViewModel)
         {
-            try { 
-                _personService.AddPerson(person);
-                return CreatedAtAction(nameof(GetPersonById), new { id = person.Id }, person);
+            try 
+            {
+                if (personViewModel == null)
+                {
+                    return BadRequest();
+                }
+
+                // Map PersonViewModel to PersonDto
+                var personDto = new PersonDto
+                {
+                    FirstName = personViewModel.FirstName,
+                    LastName = personViewModel.LastName,
+                    DateOfBirth= personViewModel.DateOfBirth,
+                };
+
+                _personService.AddPerson(personDto);
+                return CreatedAtAction(nameof(GetPersonById), new { id = personDto.Id }, personViewModel);
             }
             catch (Exception ex)
             {
@@ -61,11 +97,25 @@ namespace UKParliament.CodeTest.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatePerson(int id, [FromBody] Person updatedPerson)
+        public IActionResult UpdatePerson(int id, [FromBody] PersonViewModel personViewModel)
         {
             try
             {
-                _personService.UpdatePerson(id, updatedPerson);
+                if (personViewModel == null || id != personViewModel.Id)
+                {
+                    return BadRequest();
+                }
+
+                // Map PersonViewModel to PersonDto
+                var personDto = new PersonDto
+                {
+                    Id = personViewModel.Id,
+                    FirstName = personViewModel.FirstName,
+                    LastName = personViewModel.LastName,
+                    DateOfBirth = personViewModel.DateOfBirth,
+                };
+
+                _personService.UpdatePerson(id, personDto);
                 return NoContent();
             }
             catch (Exception ex) 

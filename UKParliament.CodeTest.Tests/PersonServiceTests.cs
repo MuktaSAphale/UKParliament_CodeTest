@@ -25,8 +25,8 @@ namespace UKParliament.CodeTest.Tests
         private void SeedData()
         {
             _context.People.AddRange(
-                new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = "1990-01-01" },
-                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", DateOfBirth = "1985-06-06" }
+                new Person { Id = 1, FirstName = "John", LastName = "Doe", DateOfBirth = DateTime.Parse("1990-01-01") },
+                new Person { Id = 2, FirstName = "Jane", LastName = "Smith", DateOfBirth = DateTime.Parse("1985-06-06") }
             );
             _context.SaveChanges();
         }
@@ -79,17 +79,17 @@ namespace UKParliament.CodeTest.Tests
         {
             // Arrange
             var personService = new PersonService(_context);
-            var newPerson = new Person { FirstName = "Alice", LastName = "Johnson", DateOfBirth = "1995-03-15" };
+            var newPersonDto = new PersonDto { FirstName = "Alice", LastName = "Johnson", DateOfBirth = "1995-03-15" };
 
             // Act
-            personService.AddPerson(newPerson);
+            var newPersonId = personService.AddPerson(newPersonDto);
 
             // Assert
-            var addedPerson = _context.People.Find(newPerson.Id);
+            var addedPerson = _context.People.Find(newPersonId);
             Assert.NotNull(addedPerson);
             Assert.Equal("Alice", addedPerson.FirstName);
             Assert.Equal("Johnson", addedPerson.LastName);
-            Assert.Equal("1995-03-15", addedPerson.DateOfBirth);
+            Assert.Equal(DateTime.Parse("1995 -03-15"), addedPerson.DateOfBirth);
         }
 
         [Fact]
@@ -97,7 +97,7 @@ namespace UKParliament.CodeTest.Tests
         {
             // Arrange
             var personService = new PersonService(_context);
-            var updatedPerson = new Person { Id = 1, FirstName = "UpdatedFirstName", LastName = "UpdatedLastName", DateOfBirth = "2000-02-20" };
+            var updatedPerson = new PersonDto { Id = 1, FirstName = "UpdatedFirstName", LastName = "UpdatedLastName", DateOfBirth = "2000-02-20" };
 
             // Act
             personService.UpdatePerson(1, updatedPerson);
@@ -107,7 +107,7 @@ namespace UKParliament.CodeTest.Tests
             Assert.NotNull(existingPerson);
             Assert.Equal("UpdatedFirstName", existingPerson.FirstName);
             Assert.Equal("UpdatedLastName", existingPerson.LastName);
-            Assert.Equal("2000-02-20", existingPerson.DateOfBirth);
+            Assert.Equal(DateTime.Parse("2000-02-20"), existingPerson.DateOfBirth);
 
         }
 

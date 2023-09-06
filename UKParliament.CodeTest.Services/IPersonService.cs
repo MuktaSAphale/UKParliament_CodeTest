@@ -4,13 +4,13 @@ namespace UKParliament.CodeTest.Services
 {
     public interface IPersonService
     {
-        public List<Person> GetAllPeople();
+        public List<PersonDto> GetAllPeople();
 
-        public Person? GetPersonById(int id);
+        public PersonDto? GetPersonById(int id);
 
-        public void AddPerson(Person person);
+        public int AddPerson(PersonDto personDto);
 
-        public void UpdatePerson(int id, Person updatedPerson);
+        public void UpdatePerson(int id, PersonDto updatedPerson);
 
         public void DeletePerson(int id);
 
